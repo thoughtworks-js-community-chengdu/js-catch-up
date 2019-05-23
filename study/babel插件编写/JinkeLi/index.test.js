@@ -1,5 +1,5 @@
 import { transform } from '@babel/core'
-import Plugin from 'index'
+import Plugin from '.'
 
 describe('test', () => {
   beforeEach(() => {

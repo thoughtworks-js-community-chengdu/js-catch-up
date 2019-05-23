@@ -1,0 +1,32 @@
+{
+  "name": "babel-plugin",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "modulePathIgnorePatterns": [
+      "/.history/",
+      "/node_modules/"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest"
+    }
+  }
+}

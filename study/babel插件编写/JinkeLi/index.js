@@ -13,6 +13,7 @@ export default function({ types: t }) {
     visitor: {
       TemplateElement(path, state) {
         // TODO:
+        console.log(path)
       },
     }
   };
