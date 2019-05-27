@@ -14,20 +14,27 @@
  const num4 = 2;
  */
 
+const operators = {
+    '+' : (a, b) => a + b,
+    '-' : (a, b) => a - b,
+    '*' : (a, b) => a * b,
+    '/' : (a, b) => a / b,
+};
+
+const calcExpression = (operator, left, right) => {
+    let calc = operators[operator];
+    if(calc) {
+        return calc(left, right)
+    }
+}
+
 export default function ({ types: t }) {
     return {
         visitor: {
             BinaryExpression(path) {
-                let left = parseInt(path.node.left.value)
-                let right = parseInt(path.node.right.value)
-                if (path.node.operator === '+') {
-                    path.replaceWith(t.numericLiteral(left + right))
-                } else if (path.node.operator === '-') {
-                    path.replaceWith(t.numericLiteral(left - right))
-                } else if (path.node.operator === '*') {
-                    path.replaceWith(t.numericLiteral(left * right))
-                } else if (path.node.operator === '/') {
-                    path.replaceWith(t.numericLiteral(left / right))
+                let result = calcExpression(path.node.operator, path.node.left.value, path.node.right.value)
+                if(result !== undefined) {
+                    path.replaceWith(t.numericLiteral(result))
                 }
             },
         }
