@@ -8,7 +8,7 @@ describe('test', () => {
         }
     })
 
-    it('test arithmetic for two numbers', () => {
+    it('preset arithmetic for two numbers', () => {
         const code = `
             const num1 = 1 + 1
             const num2 = 1 - 1
@@ -27,7 +27,7 @@ describe('test', () => {
     })
 
 
-    it('test arithmetic for multiple numbers', () => {
+    it('preset arithmetic for multiple numbers', () => {
         const code = `
             const num1 = 1 + 1 * 3
             const num2 = (1 + 1) * 3
