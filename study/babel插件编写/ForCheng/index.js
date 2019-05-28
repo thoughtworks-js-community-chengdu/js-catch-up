@@ -36,13 +36,25 @@ const calcBinaryExpression = (node, types) => {
     }
 }
 
+const isIncludeIdentifier = (node, types) => {
+    if(types.isBinaryExpression(node)) {
+        return isIncludeIdentifier(node.left, types) || isIncludeIdentifier(node.right, types)
+    } else if(types.isIdentifier(node)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 export default function ({ types: t }) {
     return {
         visitor: {
             BinaryExpression(path) {
-                let result = calcBinaryExpression(path.node, t)
-                if(result !== undefined) {
-                    path.replaceWith(t.numericLiteral(result))
+                if(!isIncludeIdentifier(path.node, t)) {
+                    let result = calcBinaryExpression(path.node, t)
+                    if(result !== undefined) {
+                        path.replaceWith(t.numericLiteral(result))
+                    }
                 }
             },
         }

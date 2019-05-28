@@ -45,4 +45,23 @@ describe('test', () => {
             const num4 = 3;
             `.trimAll())
     })
+
+    it('preset arithmetic when binary expression includes identifier', () => {
+        const code = `
+            const num1 = 1 + 1 * i
+            const num2 = (1 + i) * 3
+            const num3 = (1 + 1) * 3 - i
+            const num4 = (i + 1) * 3 / 2 - 2 * 0 + j
+        `
+        const result = transform(code, {
+            plugins: [Plugin]
+        })
+
+        expect(result.code.trimAll()).toEqual(`
+            const num1 = 1 + 1 * i;
+            const num2 = (1 + i) * 3;
+            const num3 = 6 - i;
+            const num4 = (i + 1) * 3 / 2 - 0 + j;
+            `.trimAll())
+    })
 })
