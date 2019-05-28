@@ -21,7 +21,7 @@ const operators = {
     '/' : (a, b) => a / b,
 }
 
-const calcExpression = (operator, left, right) => {
+const calcArithmetic = (operator, left, right) => {
     let calc = operators[operator]
     if(calc) {
         return calc(left, right)
@@ -30,7 +30,7 @@ const calcExpression = (operator, left, right) => {
 
 const calcBinaryExpression = (node, types) => {
     if(types.isBinaryExpression(node)) {
-        return calcExpression(node.operator, calcBinaryExpression(node.left, types), calcBinaryExpression(node.right, types))
+        return calcArithmetic(node.operator, calcBinaryExpression(node.left, types), calcBinaryExpression(node.right, types))
     } else {
         return node.value
     }
