@@ -19,12 +19,20 @@ const operators = {
     '-' : (a, b) => a - b,
     '*' : (a, b) => a * b,
     '/' : (a, b) => a / b,
-};
+}
 
 const calcExpression = (operator, left, right) => {
-    let calc = operators[operator];
+    let calc = operators[operator]
     if(calc) {
         return calc(left, right)
+    }
+}
+
+const calcBinaryExpression = (node, types) => {
+    if(types.isBinaryExpression(node)) {
+        return calcExpression(node.operator, calcBinaryExpression(node.left, types), calcBinaryExpression(node.right, types))
+    } else {
+        return node.value
     }
 }
 
@@ -32,11 +40,11 @@ export default function ({ types: t }) {
     return {
         visitor: {
             BinaryExpression(path) {
-                let result = calcExpression(path.node.operator, path.node.left.value, path.node.right.value)
+                let result = calcBinaryExpression(path.node, t)
                 if(result !== undefined) {
                     path.replaceWith(t.numericLiteral(result))
                 }
             },
         }
-    };
-};
+    }
+}
