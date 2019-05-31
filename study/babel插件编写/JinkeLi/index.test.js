@@ -39,4 +39,19 @@ describe('test', () => {
       const desc = 'my name is ' + name + age;
     `.trimAll())
   })
+
+  it('test in console', () => {
+    const code = `
+      const name = "bob";
+      console.log(\`my name is \${name}\`);
+    `
+    const result = transform(code, {
+      plugins: [Plugin]
+    })
+
+    expect(result.code.trimAll()).toEqual(`
+      const name = "bob";
+      console.log('my name is ' + name);
+    `.trimAll())
+  })
 })
