@@ -6,4 +6,4 @@ Babel 是 JavaScript 编译器，通常也叫做“转换编译器（transpiler�
 
 ## 照片
 
-[查看PPT](https://drive.google.com/open?id=1HJWDPyHNtsQrcX0_o3la-G6magnpX30m)
+[查看PPT](https://drive.google.com/file/d/1VXXzAflU1TwjRcQX2kbYdaPK6inDtFA6/view?usp=sharing)
